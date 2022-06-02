@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "386449869236",
+    "firebase_url": "https://lindoke-9427d.firebaseio.com",
+    "project_id": "lindoke-9427d",
+    "storage_bucket": "lindoke-9427d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:386449869236:android:f655af835633c7773fcae1",
+        "android_client_info": {
+          "package_name": "com.lindokeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "386449869236-kmlu9m51s8mlufifbf568qt3dbmsotk5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lindokeapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "386449869236-9oui6a7vi72bqrf5inh7fml6h5cssds7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9TQPBM_RVL253OyNZWQTljiLyyWQt00o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "386449869236-9oui6a7vi72bqrf5inh7fml6h5cssds7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
