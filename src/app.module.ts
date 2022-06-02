@@ -14,8 +14,11 @@ import { RoomModule } from './room/room.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    // MongooseModule.forRoot(
+    //   `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`,
+    // ),
     MongooseModule.forRoot(
-      `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}?authSource=admin`,
+      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}lindokedb?retryWrites=true&w=majority`,
     ),
     SingerModule,
     RoomModule,
