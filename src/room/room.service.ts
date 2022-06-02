@@ -4,14 +4,12 @@ import { Model } from 'mongoose';
 import { WebSocketServer } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 import { RoomDTO } from './room.model';
-import { UserDTO } from 'src/user/user.model';
 import generateCode from 'src/utils/generateCode';
 
 @Injectable()
 export class RoomService {
   constructor(
-    @InjectModel('Room') private readonly roomModule: Model<RoomDTO>,
-    @InjectModel('User') private readonly userModule: Model<UserDTO>,
+    @InjectModel('Room') private readonly roomModule: Model<RoomDTO>, // @InjectModel('User') private readonly userModule: Model<UserDTO>,
   ) {}
   @WebSocketServer() server: Server;
 

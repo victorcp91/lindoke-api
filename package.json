@@ -31,6 +31,7 @@
     "@nestjs/platform-socket.io": "^8.4.5",
     "@nestjs/websockets": "^8.4.5",
     "axios": "^0.27.2",
+    "cache-manager": "^4.0.0",
     "firebase-admin": "^10.2.0",
     "mongoose": "^6.3.4",
     "reflect-metadata": "^0.1.13",
@@ -41,6 +42,7 @@
     "@nestjs/cli": "^8.0.0",
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
+    "@types/cache-manager": "^3.4.3",
     "@types/express": "^4.17.13",
     "@types/jest": "27.5.0",
     "@types/mongoose": "^5.11.97",
@@ -79,6 +81,6 @@
     "testEnvironment": "node"
   },
   "engines": {
-		"node": "14.18.1"
-	}
+    "node": "14.18.1"
+  }
 }

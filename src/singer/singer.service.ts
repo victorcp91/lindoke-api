@@ -1,22 +1,39 @@
 import {
+  CACHE_MANAGER,
+  Inject,
   Injectable,
   NotFoundException,
   BadRequestException,
 } from '@nestjs/common';
+import { Cache } from 'cache-manager';
+
 import { HttpService } from '@nestjs/axios';
 import { map, lastValueFrom } from 'rxjs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SingerDTO, SongDTO } from './singer.model';
 import sanitizeSong from './utils/sanitizeSinger';
-import artists2 from './utils/artists2';
 
 @Injectable()
 export class SingerService {
   constructor(
     @InjectModel('Singer') private readonly singerModule: Model<SingerDTO>,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private httpService: HttpService,
   ) {}
+
+  async addToCache(key: string, item: string) {
+    await this.cacheManager.set(key, item, { ttl: 0 });
+  }
+
+  async getFromCache(key: string) {
+    const value = await this.cacheManager.get(key);
+    return value;
+  }
+
+  async removeCache(key: string) {
+    await this.cacheManager.del(key);
+  }
 
   async getSongs(id: string) {
     const currentSinger = await this.singerModule.findOne({ id });
@@ -82,6 +99,7 @@ export class SingerService {
       await foundSinger
         .updateOne({ songs: [...foundSinger.songs, ...sanitizedSongs] })
         .exec();
+      this.removeCache('singers');
       return sanitizedSongs;
     }
     return [];
@@ -96,8 +114,17 @@ export class SingerService {
   }
 
   async getAllSinger() {
-    const result = await this.singerModule.find().exec();
-    return result as SingerDTO[];
+    const cacheResult: any = await this.getFromCache('singers');
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    } else {
+      const result = await this.singerModule.find().exec();
+      if (result) {
+        const stringResult = JSON.stringify(result);
+        await this.addToCache('singers', stringResult);
+      }
+      return result as SingerDTO[];
+    }
   }
   // async formatSongs() {
   //   const formattedArtists = artists2.map((artist: any) => ({
